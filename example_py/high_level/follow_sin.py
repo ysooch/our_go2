@@ -23,7 +23,7 @@ def main():
     sport_client.SetTimeout(10.0)
     sport_client.Init()
 
-    total_duration = 7  # Total duration is 7 seconds
+    total_duration = 3  # Total duration is 3 seconds
 
     for i in range(1, total_duration + 1):
         if i <= 3:

@@ -20,7 +20,6 @@ cmake ..
 make
 ```
 
-### Python wrapper
 If you want to build the python wrapper, then replace the cmake line with:
 ```bash
 cmake -DPYTHON_BUILD=TRUE ..
