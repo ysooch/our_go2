@@ -75,7 +75,7 @@ int main(int argc, char** argv)
 }
 
 
-i/*nt main(int argc, char **argv)
+/*int main(int argc, char **argv)
 {
     if (argc < 2)
     {
