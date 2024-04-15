@@ -20,5 +20,10 @@ cmake ..
 make
 ```
 
+If you want to build the python wrapper, then replace the cmake line with:
+```bash
+cmake -DPYTHON_BUILD=TRUE ..
+```
+
 ### Notice
 For more reference information, please go to [Unitree Document Center](https://support.unitree.com/home/zh/developer).
