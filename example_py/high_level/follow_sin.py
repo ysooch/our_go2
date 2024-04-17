@@ -5,7 +5,7 @@ import math
 import asyncio
 import threading
 
-sys.path.append('/home/seungwan/Desktop/wrapping/lib/python/x86_64/')
+sys.path.append('/home/seungwan/Desktop/our_go2/lib/python/x86_64/')
 import robot_interface as sdk
 
 def main():

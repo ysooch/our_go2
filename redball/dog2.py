@@ -122,10 +122,10 @@ If there is no red object, say 'stop'.""",
             # cv2.pollKey()
 
             # timeout
-            if time.time() - start > constants.MAX_TIME:
+            if time.time() - start > MAX_TIME:
                 break
 
-            if it >= constants.MAX_ITER:
+            if it >= MAX_ITER:
                 break
             # time.sleep(0.1)
 
