@@ -74,6 +74,7 @@ int main(int argc, char** argv)
   return 0;
 }
 
+// Simple Command
 
 /*int main(int argc, char **argv)
 {
@@ -85,31 +86,34 @@ int main(int argc, char** argv)
     
     unitree::robot::ChannelFactory::Instance()->Init(0, argv[1]);
 
-    // 스포츠 클라이언트 초기화
+    // Initialize SportClient
     unitree::robot::go2::SportClient sport_client;
     sport_client.SetTimeout(10.0f);
     sport_client.Init();
 
-    const int totalDuration = 7; // 전체 지속 시간 15초
+    const int totalDuration = 7; // Duration = 7
 
     for(int i = 1; i <= totalDuration; ++i){
         if(i <= 3) {
-            // 처음 5초 동안 전진
+            // Move forward for 3 secs
             sport_client.Move(0.8, 0, 0);
         } else if(i <= 2) {
-            // 다음 2초 동안 왼쪽으로 이동
+            // Move forward for 2 secs
             sport_client.Move(0, 0.8, 0);
         } else {
-            // 나머지 시간 동안 다시 전진
+            // Move forward
             sport_client.Move(0.8, 0, 0);
         }
-        sleep(1); // 1초 기다림
+        sleep(1);
     }
 
-    sport_client.StopMove(); // 이동 중지
+    sport_client.StopMove();
 
     return 0;
 }*/
+
+// Obstacle Avoidance Checking
+
 /*
 int main(int argc, char **argv)
 {
