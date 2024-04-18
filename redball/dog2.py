@@ -54,9 +54,9 @@ class Dog:
             "role": "user",
             "content": [
                 """If a red object is on the left side of the frame, say 'turn left'. 
-If it is around the center, say 'move forward'. 
-If it is on the right, say 'turn right'.
-If there is no red object, say 'stop'.""",
+                    If it is around the center, say 'move forward'. 
+                    If it is on the right, say 'turn right'.
+                    If there is no red object, say 'stop'.""",
                 None,
             ],
         }
