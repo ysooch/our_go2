@@ -54,7 +54,7 @@ def activate_sportclient(ans):
     elif ans == 4:
         print("Move right") # right
     else:
-        print("Statment Error has been occurred.")
+        print("Red Ball Statment Error has been occurred.")
 
 
     # Alpha test
