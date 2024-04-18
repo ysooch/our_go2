@@ -15,17 +15,17 @@ MAX_TIME = 200  # second
 # ACTION
 STOP = 0
 MOVE_FORWARD = 1
-TURN_LEFT = 2
-TURN_RIGHT = 3
-MOVE_BACKWARD = 4
+MOVE_LEFT = 2
+MOVE_BACKWARD = 3
+MOVE_RIGHT = 4
 # LOOK_UP = 4
 # LOOK_DOWN = 5
 ACTION_DICT = {
     0: "Stop",
     1: "Move Forward",
     2: "Turn Left",
-    3: "Turn Right",
-#    4: "Move Backward",
+    3: "Move Backward",
+    4: "Move Right",
 }
 
 #################################################
@@ -53,10 +53,10 @@ class Dog:
         self.openai_goal = {
             "role": "user",
             "content": [
-                """If a red object is on the left side of the frame, say 'turn left'. 
-                    If it is around the center, say 'move forward'. 
-                    If it is on the right, say 'turn right'.
-                    If there is no red object, say 'stop'.""",
+                """If a red object is on the left side of the frame, prints '2'. 
+                    If it is around the center, prints '1'. 
+                    If it is on the right, prints '4'.
+                    If there is no red object, say '0'.""",
                 None,
             ],
         }
