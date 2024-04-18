@@ -44,6 +44,21 @@ def activate_sportclient(ans):
     sport_client.SetTimeout(10.0)
     sport_client.Init()
     
+    # Test for getting gpt outputs correctly
+    if ans == 1:
+        print("Move forward") # forward
+    elif ans == 2:
+        print("Move left") # left
+    elif ans == 3:
+        print("Move backward") # backward
+    elif ans == 4:
+        print("Move right") # right
+    else:
+        print("Statment Error has been occurred.")
+
+
+    # Alpha test
+    """
     if ans == 1:
         sport_client.Move(0.8, 0, 0) # forward
     elif ans == 2:
@@ -56,8 +71,7 @@ def activate_sportclient(ans):
         print("Statment Error has been occurred.")
 
     sport_client.StopMove()  # Stop moving
-
-    return 0
+    """
 
 
 if __name__ == "__main__":
@@ -67,4 +81,3 @@ if __name__ == "__main__":
     ans = mydog.queryGPT_by_image()
     activate_sportclient(ans)
     mydog.shutdown()
-
