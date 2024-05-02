@@ -85,8 +85,9 @@ class Dog:
             2: "Move Left",
             3: "Move Right",
             4: "Rotate right",
-            5: "Rotate left"}
-            Print only the corresponding number as given the command: """
+            5: "Rotate left"
+            }
+            According to the above action dictionary, you are only allowed to output the corresponding number as an answer by interpreting the command: """
         self.openai_goal_for_feedback = {
             "role": "user",
             "content": [
@@ -107,7 +108,7 @@ class Dog:
     def connect_camera(self):
         # Open the camera
         print("- Connect Cam")
-        # With connecting to the robot
+        # By connecting to the robot
         gstreamer_str = "udpsrc address=230.1.1.1 port=1720 multicast-iface=enx7cc2c64bce6b ! application/x-rtp, media=video, encoding-name=H264 ! rtph264depay ! h264parse ! avdec_h264 ! videoconvert ! video/x-raw,width=1280,height=720,format=BGR ! appsink drop=1"
 
         # Without connecting to the robot
@@ -133,7 +134,7 @@ class Dog:
 
         result = self.openai_client.chat.completions.create(**self.openai_params)
         assistant = result.choices[0].message.content
-        return assistant
+        print(assistant)
     
     def queryGPT_by_image_with_feedback(self, frame, inp) -> str:
         # _, buffer = cv2.imencode(".jpg", frame)
@@ -179,66 +180,19 @@ class Dog:
         return 0
 
     def run(self, act_function=None):
-        start = time.time()
-        # last_action_time = 0
-        it = 1
-
-        # frame, transformed = self.get_image()
-        # cv2.imshow("frame2", frame)
-        # cv2.waitKey(1)
-
-        # total_duration = 40
-        # for i in range(1, total_duration + 1):
-        #     if i <= total_duration:
-        #         self.activate_sportclient('0')
-
-        while True:
-            # Read image and decide action
+        for i in range(10):
             frame, transformed = self.get_image()
-                # cv2.imshow("frame2", frame)
-                # cv2.waitKey(1)
-                # cv2.pollKey()
+            _, buffer = cv2.imencode(".jpg", frame)
+            decoded = base64.b64encode(buffer).decode("utf-8")
+            self.openai_goal["content"][1] = {"image": decoded, "resize": 768}
+            self.openai_prompt_messages.append(self.openai_goal)
 
-            inp = timeoutInput(5)
-            if inp != "":
-                # inp2 = timeoutInput(3)
-                # if inp2 != "":
-                #     inp += inp2
-                action = self.queryGPT_by_image_with_feedback(frame, inp)
-                print(action)
-                self.activate_sportclient(action)
-            # elif time.time() - last_action_time > 5:
-            #     last_action_time = time.time()
-            else:
-                action = self.queryGPT_by_image(frame)
-                if it % 2 == 0:
-                    print(action)
-                    self.activate_sportclient(action)
+            result = self.openai_client.chat.completions.create(**self.openai_params)
+            assistant = result.choices[0].message.content
+            print(assistant)
+            self.activate_sportclient(assistant)
 
-
-            # frame = cv2.putText(
-            #     frame,
-            #     action,
-            #     (240, 40),
-            #     cv2.FONT_HERSHEY_PLAIN,
-            #     2,
-            #     (0, 0, 255),  # red
-            #     3,
-            #     cv2.LINE_AA,
-            # )
-
-            it += 1
-    
-            # timeout
-            if time.time() - start > MAX_TIME:
-                break
-
-            if it >= MAX_ITER:
-                break
-            # time.sleep(0.1)
-
-        end = time.time()
-        print(f"Run for {(end - start):.1f} sec, {it} iterations")
-
-
-
+            self.openai_prompt_messages.append({"role": "assistant", "content": assistant})
+            self.openai_goal = {
+                "role": "user",
+                "content": [self.prefix_for_feedback + input(), None,],}

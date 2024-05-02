@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import dog2
+import dog2_multi
 
 # import sys
 # import time
@@ -8,7 +8,7 @@ import dog2
 # import threading
 
 if __name__ == "__main__":
-    mydog = dog2.Dog()
+    mydog = dog2_multi.Dog()
     mydog.setup()
     mydog.run()
     # ans = mydog.queryGPT_by_image()

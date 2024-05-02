@@ -23,10 +23,10 @@ def main():
     sport_client.SetTimeout(10.0)
     sport_client.Init()
 
-    total_duration = 3  # Total duration is 3 seconds
+    total_duration = 4  # Total duration is 3 seconds
 
     for i in range(1, total_duration + 1):
-        if i <= 3:
+        if i <= 2:
             # Move forward for the first 3 seconds
             sport_client.Move(0.8, 0, 0)
         elif i > 3 and i <= 5:  # Corrected the logic to ensure this branch executes
